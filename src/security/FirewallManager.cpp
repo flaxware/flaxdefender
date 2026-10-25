@@ -1,5 +1,6 @@
 #include "flaxdefender/security/FirewallManager.h"
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 
@@ -10,10 +11,9 @@ void FirewallManager::addRule(Rule rule) {
 }
 
 void FirewallManager::removeRule(const std::string& target) {
-    auto it = std::remove_if(rules_.begin(), rules_.end(), [&](const Rule& rule) {
+    std::erase_if(rules_, [&](const Rule& rule) {
         return rule.target == target;
     });
-    rules_.erase(it, rules_.end());
 }
 
 std::vector<FirewallManager::Rule> FirewallManager::rules() const {

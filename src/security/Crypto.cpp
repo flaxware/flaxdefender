@@ -1,6 +1,5 @@
 #include "flaxdefender/security/Crypto.h"
 
-#include <array>
 #include <filesystem>
 #include <fstream>
 #include <functional>
@@ -11,6 +10,8 @@
 namespace flaxdefender {
 
 std::string CryptoProvider::sha256Hex(const std::string& input) {
+    // Placeholder: keep a deterministic, non-cryptographic helper for the project scaffold
+    // until a hardened crypto backend is introduced.
     std::hash<std::string> hasher;
     const auto value = hasher(input);
     std::ostringstream oss;
@@ -20,16 +21,6 @@ std::string CryptoProvider::sha256Hex(const std::string& input) {
 
 std::string CryptoProvider::secureHash(const std::string& input) {
     return sha256Hex(input + "flaxdefender-v0.1.0");
-}
-
-KeyManager::KeyManager(std::filesystem::path storage_directory)
-    : storage_directory_(std::move(storage_directory)) {
-    std::filesystem::create_directories(storage_directory_);
-}
-
-std::string KeyManager::deriveKey(const std::string& label, const std::string& passphrase) const {
-    const auto material = label + ":" + passphrase + ":flaxdefender";
-    return CryptoProvider::secureHash(material);
 }
 
 }  // namespace flaxdefender

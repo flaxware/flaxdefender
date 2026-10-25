@@ -32,7 +32,7 @@ Example concept:
 │ FlaxDefender                         [System Secure] [Apply]      │
 ├──────────────────────────────────────────────────────────────────────┤
 │ Overview      Firewall      Tor     Cleanup    Antivirus   Monitor   │
-├──────────────────────────────────────────────��───────────────────────┤
+├──────────────────────────────────────────────────────────────────────┤
 │ Security Status                                                     │
 │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐                     │
 │ │ Disk Encrypt│ │ Firewall    │ │ Tor Policy  │                     │
@@ -73,6 +73,39 @@ The project is organized in layers:
 - Cryptography layer: hashing, key derivation, secure storage helpers, credential policy checks
 - XFCE integration: D-Bus and desktop integration hooks without forcing heavy GTK dependencies
 - Daemon and CLI surfaces: service and admin operations
+
+## Quick start
+
+Requirements:
+
+- CMake 3.20+
+- C++20-capable compiler (GCC/Clang)
+- Linux environment
+
+Configure and build:
+
+```bash
+cmake -S . -B build -DBUILD_TESTING=ON
+cmake --build build
+```
+
+Run the application:
+
+```bash
+./build/flaxdefender_app
+```
+
+Run the smoke test suite:
+
+```bash
+ctest --test-dir build --output-on-failure
+```
+
+Current behavior:
+
+- The demo app prints the FlaxDefender banner and runs a small set of sample security operations.
+- It is intentionally a scaffold and should be treated as the project foundation, not a complete antivirus product.
+- The default run uses safe example paths and does not require a live system policy change to validate the build.
 
 ## Build
 

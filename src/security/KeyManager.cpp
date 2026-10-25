@@ -1,8 +1,8 @@
+#include "flaxdefender/security/KeyManager.h"
 #include "flaxdefender/security/Crypto.h"
 
 #include <filesystem>
-#include <fstream>
-#include <sstream>
+#include <string>
 
 namespace flaxdefender {
 
